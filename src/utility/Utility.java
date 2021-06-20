@@ -12,6 +12,7 @@
 
 package utility;
 
+import java.util.ArrayDeque;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -143,6 +144,30 @@ public class Utility {
             System.out.println("Is not a Leap Year");
             return false;
         }
+    }
+
+    /**
+     * This method used to show if the String is palindrome or not.
+     * It uses dequeue to store characters of string and checks.
+     *
+     * @param lowerString as input from user
+     */
+    public static void palindromeChecker(String lowerString) {
+
+        ArrayDeque<Character> arrayDeque = new ArrayDeque<Character>();
+
+        for (int i = lowerString.length() - 1; i >= 0; i--) {
+            // add method to add elements
+            arrayDeque.add(lowerString.charAt(i));
+        }
+        String reverseString = "";
+        while (!arrayDeque.isEmpty()) {
+            reverseString = reverseString + arrayDeque.remove();
+        }
+        if (lowerString.equals(reverseString))
+            System.out.println("The input String is a palindrome.");
+        else
+            System.out.println("The input String is not a palindrome.");
     }
 
 }
