@@ -12,7 +12,12 @@
 
 package utility;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -168,6 +173,47 @@ public class Utility {
             System.out.println("The input String is a palindrome.");
         else
             System.out.println("The input String is not a palindrome.");
+    }
+
+    /**
+     * Method to read the txt file.
+     * Splits each line into words and store the words into array.
+     *
+     * @param filePath : Name of file or full path of file.
+     * @throws IOException :
+     */
+    public static String[] fileReader(String filePath) throws IOException {
+        String line;
+        String[] wordsArray = new String[0];
+
+        FileReader file = new FileReader(filePath);
+        BufferedReader bufferReader = new BufferedReader(file);
+
+        while ((line = bufferReader.readLine()) != null) {
+            wordsArray = line.split(" ");
+        }
+        bufferReader.close();
+        return wordsArray;
+    }
+
+    /**
+     * Method to write the txt file.
+     * Fetch data from list and write into txt file .
+     *
+     * @param list : new word stored list
+     * @throws IOException
+     */
+    public static void fileWriter(LinkedList<String> list, String filePath) throws IOException {
+        String str = "";
+        for (int i = 0; i < list.size(); i++) {
+            str = str.concat(list.get(i)).concat(" ");
+        }
+        FileWriter fileWriter = new FileWriter(filePath);
+        for (int i = 0; i < str.length(); i++) {
+            fileWriter.write(str.charAt(i));
+        }
+        System.out.println("Writing successful");
+        fileWriter.close();
     }
 
 }
